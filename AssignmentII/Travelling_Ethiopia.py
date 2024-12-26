@@ -1,7 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-'''Task #1 Graph representation and Visualization'''
 
 # Data
 cities = ['Addis Ababa', 'Bahir Dar', 'Gondar', 'Hawassa', 'Mekelle']
@@ -12,6 +11,8 @@ roads = {
     'Hawassa': [('Addis Ababa', 275)],
     'Mekelle': [('Gondar', 300)]
 }
+
+'''Task #1 Graph representation and Visualization'''
 
 def visualize_graph(cities, roads):
     G = nx.Graph()
@@ -33,5 +34,56 @@ def visualize_graph(cities, roads):
 
     plt.title("Ethiopia Road Network")
     plt.show()
-    
+
 visualize_graph(cities, roads)
+
+'''Task #2 Path Finding '''
+
+from collections import deque
+
+def uninformed_path_finder(cities, roads, start_city, goal_city, strategy):
+    visited = set()
+    path = []
+    cost = 0
+
+    if strategy == 'bfs':
+        # Breadth-First Search
+        queue = deque([(start_city, [start_city], 0)])
+        while queue:
+            current_city, current_path, current_cost = queue.popleft()
+            if current_city == goal_city:
+                return current_path, current_cost
+            if current_city not in visited:
+                visited.add(current_city)
+                for neighbor, distance in roads[current_city]:
+                    queue.append((neighbor, current_path + [neighbor], current_cost + distance))
+
+    elif strategy == 'dfs':
+        # Depth-First Search
+        stack = [(start_city, [start_city], 0)]
+        while stack:
+            current_city, current_path, current_cost = stack.pop()
+            if current_city == goal_city:
+                return current_path, current_cost
+            if current_city not in visited:
+                visited.add(current_city)
+                for neighbor, distance in roads[current_city]:
+                    stack.append((neighbor, current_path + [neighbor], current_cost + distance))
+
+    return None, None
+
+'''
+#Example usage
+
+# Find a path using BFS
+start_city = 'Addis Ababa' 
+goal_city =  'Mekelle'
+path, cost = uninformed_path_finder(cities, roads, start_city, goal_city, strategy='bfs')
+print("BFS Path:", path)
+print("BFS Cost:", cost)
+
+# Find a path using DFS
+path, cost = uninformed_path_finder(cities, roads, start_city, goal_city, strategy='dfs')
+print("DFS Path:", path)
+print("DFS Cost:", cost) '''
+
