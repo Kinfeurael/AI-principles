@@ -3,6 +3,16 @@ import matplotlib.pyplot as plt
 
 '''Task #1 Graph representation and Visualization'''
 
+# Data
+cities = ['Addis Ababa', 'Bahir Dar', 'Gondar', 'Hawassa', 'Mekelle']
+roads = {
+    'Addis Ababa': [('Bahir Dar', 510), ('Hawassa', 275)],
+    'Bahir Dar': [('Addis Ababa', 510), ('Gondar', 180)],
+    'Gondar': [('Bahir Dar', 180), ('Mekelle', 300)],
+    'Hawassa': [('Addis Ababa', 275)],
+    'Mekelle': [('Gondar', 300)]
+}
+
 def visualize_graph(cities, roads):
     G = nx.Graph()
     
@@ -23,15 +33,5 @@ def visualize_graph(cities, roads):
 
     plt.title("Ethiopia Road Network")
     plt.show()
-
-# Data
-cities = ['Addis Ababa', 'Bahir Dar', 'Gondar', 'Hawassa', 'Mekelle']
-roads = {
-    'Addis Ababa': [('Bahir Dar', 510), ('Hawassa', 275)],
-    'Bahir Dar': [('Addis Ababa', 510), ('Gondar', 180)],
-    'Gondar': [('Bahir Dar', 180), ('Mekelle', 300)],
-    'Hawassa': [('Addis Ababa', 275)],
-    'Mekelle': [('Gondar', 300)]
-}
-
+    
 visualize_graph(cities, roads)
