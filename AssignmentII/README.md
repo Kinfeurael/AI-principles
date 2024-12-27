@@ -43,7 +43,21 @@ roads = {
 
 ### Example Usage
 
-#### 1. Single Path Finder
+#### 1. Graph represenatation & Visualization
+
+Visualize the road network and highlight the paths found.
+```python
+import networkx as nx
+import matplotlib.pyplot as plt
+
+G = nx.Graph()
+for city, connections in roads.items():
+    for neighbor, dist in connections:
+        G.add_edge(city, neighbor, weight=dist)
+```
+
+
+#### 2. Single Path Finder
 Find a path from a starting city to a goal city using BFS or DFS.
 ```python
 from pathfinder import uninformed_path_finder
@@ -54,7 +68,7 @@ path, cost = uninformed_path_finder(
 print(f"BFS Path: {path} with cost {cost}")
 ```
 
-#### 2. Traverse All Cities
+#### 3. Traverse All Cities
 Find an optimal traversal path visiting all cities.
 ```python
 from pathfinder import traverse_all_cities
@@ -62,17 +76,6 @@ from pathfinder import traverse_all_cities
 path, cost = traverse_all_cities(cities, roads, 'Addis Ababa', 'dfs')
 print(f"Traversal Path: {path} with cost {cost}")
 ```
-
-#### 3. Visualization
-Visualize the road network and highlight the paths found.
-```python
-import networkx as nx
-import matplotlib.pyplot as plt
-
-G = nx.Graph()
-for city, connections in roads.items():
-    for neighbor, dist in connections:
-        G.add_edge(city, neighbor, weight=dist)
 
 # Plot
 pos = nx.spring_layout(G)
