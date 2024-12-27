@@ -43,8 +43,7 @@ roads = {
 
 ### Example Usage
 
-#### 1. Graph represenatation & Visualization
-
+#### 1. Visualization
 Visualize the road network and highlight the paths found.
 ```python
 import networkx as nx
@@ -54,8 +53,12 @@ G = nx.Graph()
 for city, connections in roads.items():
     for neighbor, dist in connections:
         G.add_edge(city, neighbor, weight=dist)
+# Plot
+pos = nx.spring_layout(G)
+nx.draw(G, pos, with_labels=True, node_color='lightblue')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=nx.get_edge_attributes(G, 'weight'))
+plt.show()
 ```
-
 
 #### 2. Single Path Finder
 Find a path from a starting city to a goal city using BFS or DFS.
@@ -76,14 +79,6 @@ from pathfinder import traverse_all_cities
 path, cost = traverse_all_cities(cities, roads, 'Addis Ababa', 'dfs')
 print(f"Traversal Path: {path} with cost {cost}")
 ```
-
-# Plot
-pos = nx.spring_layout(G)
-nx.draw(G, pos, with_labels=True, node_color='lightblue')
-nx.draw_networkx_edge_labels(G, pos, edge_labels=nx.get_edge_attributes(G, 'weight'))
-plt.show()
-```
-
 ## Functions
 
 ### `uninformed_path_finder`
