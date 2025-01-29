@@ -32,9 +32,4 @@ Each solution is implemented in Python with the following structure:
 ## Requirements
 Ensure you have Python installed. No additional dependencies are required.
 
-## How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/kinfeurael/.git
-   cd ethiopia-search ```
-2. Run the desired Script
+
