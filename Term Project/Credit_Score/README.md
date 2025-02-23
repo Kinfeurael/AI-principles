@@ -47,5 +47,4 @@ This project analyzes credit risk using a dataset of 250,000 borrowers, focusing
 ## Authors
 - **Kinfeurael Wubishet - GSR/8436/17**
 - **Yetemegn Telaye - GSR/8087/17**
-- **Melat Dagnachew  - GSR/2402/17**
 
